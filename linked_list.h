@@ -11,6 +11,7 @@ private:
         Node *next;
 
         Node() = default;
+
         explicit Node(V value) {
             this->value = value;
         }
@@ -20,7 +21,7 @@ private:
 
 public:
     V get(V value) {
-        Node* next = &first;
+        Node *next = &first;
         while (next != nullptr) {
             if (next->value == value) {
                 return next->value;
@@ -30,13 +31,14 @@ public:
     }
 
     void add(V value) {
-        Node* next = &first;
+        Node *next = &first;
         while (next->next != nullptr) {
             next = next->next;
         }
-        Node* n = (new Node(value));
+        Node *n = (new Node(value));
         next->next = n;
     }
 
     LinkedList() = default;
+
 };

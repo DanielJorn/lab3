@@ -9,6 +9,7 @@ public:
     string str;
     bool operator==(const MyString &anotherStr) const;
     bool operator!=(const MyString &anotherStr) const;
+    MyString(string str);
 };
 
 namespace std {
@@ -28,4 +29,8 @@ bool MyString::operator==(const MyString &anotherStr) const {
 
 bool MyString::operator!=(const MyString &anotherStr) const {
     return !operator==(anotherStr);
+}
+
+MyString::MyString(string str) {
+    this->str = str;
 }
