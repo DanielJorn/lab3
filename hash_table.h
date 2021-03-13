@@ -1,11 +1,12 @@
 #include <iostream>
 #include "linked_list.h"
+#include "pair.h"
 
 template<class K, class V>
 class HashTable {
 private:
     int size = 5;
-    LinkedList<V> *array = new LinkedList<V>[size];
+    LinkedList<Pair<K, V>> *array = new LinkedList<Pair<K, V>>[5];
 public:
     V get(K key);
 
@@ -14,13 +15,27 @@ public:
 
 template<class K, class V>
 V HashTable<K, V>::get(K key) {
-    cout << hash<K>()(key) << endl;
+    int hash = std::hash<K>()(key);
+    int elementInd = hash % size;
+    LinkedList<Pair<K, V>> list = array[elementInd];
+    Pair<K, V> neededPair;
+
+    for (int i = 0; i < list.size(); ++i) {
+        Pair<K, V> currPair = list.get(i);
+        if (currPair.left == key){
+            neededPair = currPair;
+            break;
+        }
+    }
+
+    return neededPair.right;
 }
 
 template<class K, class V>
 void HashTable<K, V>::add(K key, V value) {
     int hash = std::hash<K>()(key);
     int elementInd = hash % size;
-    LinkedList<V> list = array[elementInd];
-    //list.add(value);
+    LinkedList<Pair<K, V>> &list = array[elementInd];
+    Pair<K, V> pairToAdd = Pair<K, V>(key, value);
+    list.add(pairToAdd);
 }
