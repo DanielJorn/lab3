@@ -6,10 +6,15 @@ using namespace std;
 
 int main() {
     LinkedList<string> list = LinkedList<string>();
+
     MyString str = MyString();
     str.str = "dsd";
-    int hash = std::hash<MyString>()(str);
-    cout << "hash is " << hash << endl;
+    MyString str1 = MyString();
+    str1.str = "123";
+
+    bool a = str == str1;
+    cout << "Hash function working incorrectly " << a << endl;
+
     list.add("test adding worked");
     string result = list.get("test adding worked");
     cout << result << endl;
