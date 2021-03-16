@@ -7,9 +7,11 @@ class HashTable {
 private:
     int size = 5;
     LinkedList<Pair<K, V>> *array = new LinkedList<Pair<K, V>>[5];
+
 public:
     V get(K key);
     void add(K key, V value);
+    void remove(K key);
 };
 
 template<class K, class V>
@@ -31,10 +33,18 @@ V HashTable<K, V>::get(K key) {
 }
 
 template<class K, class V>
-void HashTable<K, V>::add(K key, V value) {
+void HashTable<K, V>::add(K key, V valuew) {
     int hash = std::hash<K>()(key);
     int elementInd = hash % size;
     LinkedList<Pair<K, V>> &list = array[elementInd];
-    Pair<K, V> pairToAdd = Pair<K, V>(key, value);
+    Pair<K, V> pairToAdd = Pair<K, V>(key, valuew);
     list.add(pairToAdd);
+}
+
+template<class K, class V>
+void HashTable<K, V>::remove(K key) {
+    int hash = std::hash<K>()(key);
+    int elementInd = hash % size;
+    LinkedList<Pair<K, V>> &list = array[elementInd];
+
 }

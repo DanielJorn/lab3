@@ -1,4 +1,5 @@
 #include <iostream>
+#include <utility>
 
 class MyString;
 
@@ -33,7 +34,7 @@ bool MyString::operator!=(const MyString &anotherStr) const {
 }
 
 MyString::MyString(string str) {
-    this->str = str;
+    this->str = std::move(str);
 }
 
 MyString::MyString() {

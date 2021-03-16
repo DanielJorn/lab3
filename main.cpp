@@ -8,7 +8,10 @@ int main() {
     HashTable<MyString, string> table = HashTable<MyString, string>();
     table.add(MyString("DDdD"), "dssda");
     table.add(MyString("DD2dD"), "dssda2");
-    string res = table.get(MyString("DDd2D"));
+    table.add(MyString("DD3dD1"), "dssda3");
+    table.add(MyString("4"), "4");
+
+    string res = table.get(MyString("DD3dD1"));
     cout << res << endl;
 }
 

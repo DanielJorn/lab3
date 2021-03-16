@@ -27,6 +27,7 @@ public:
     V get(int index);
     V get(V value);
     void add(V value);
+    void remove(int index);
 
     LinkedList() = default;
 
@@ -40,7 +41,7 @@ V LinkedList<V>::get(int index) {
     }
 
     Node* currNode = &first;
-    for (int i = 0; i < this->size(); ++i) {
+    for (int i = 0; i < index; ++i) {
         currNode = currNode->next;
     }
 
@@ -72,4 +73,17 @@ void LinkedList<V>::add(V value) {
     Node *n = (new Node(value));
     next->next = n;
     ++mSize;
+}
+
+template<class V>
+void LinkedList<V>::remove(int index) {
+    Node *previous = &first;
+    Node *toDelete = &first;
+    for (int i = 0; i < index; ++i) {
+        toDelete = &toDelete->next;
+        previous = toDelete;
+    }
+    previous->next = toDelete->next;
+    toDelete->next = NULL;
+    delete toDelete;
 }
