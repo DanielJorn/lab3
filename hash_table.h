@@ -9,7 +9,6 @@ private:
     LinkedList<Pair<K, V>> *array = new LinkedList<Pair<K, V>>[5];
 public:
     V get(K key);
-
     void add(K key, V value);
 };
 

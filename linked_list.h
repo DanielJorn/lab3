@@ -12,7 +12,7 @@ private:
         V value;
         Node *next = nullptr;
 
-        Node() {};
+        Node() = default;
 
         explicit Node(V value) {
             this->value = value;
@@ -22,32 +22,13 @@ private:
     Node first;
 
 public:
-    int size() {
-        return mSize;
-    }
+    int size();
+
     V get(int index);
+    V get(V value);
+    void add(V value);
 
-    V get(V value) {
-        Node *next = &first;
-        while (next != nullptr) {
-            if (next->value == value) {
-                return next->value;
-            }
-            next = next->next;
-        }
-    }
-
-    void add(V value) {
-        Node *next = &first;
-        while (next->next != nullptr) {
-            next = next->next;
-        }
-        Node *n = (new Node(value));
-        next->next = n;
-        ++mSize;
-    }
-
-    LinkedList() {};
+    LinkedList() = default;
 
 };
 
@@ -64,4 +45,31 @@ V LinkedList<V>::get(int index) {
     }
 
     return currNode->value;
+}
+
+template<class V>
+int LinkedList<V>::size() {
+    return mSize;
+}
+
+template<class V>
+V LinkedList<V>::get(V value) {
+    Node *next = &first;
+    while (next != nullptr) {
+        if (next->value == value) {
+            return next->value;
+        }
+        next = next->next;
+    }
+}
+
+template<class V>
+void LinkedList<V>::add(V value) {
+    Node *next = &first;
+    while (next->next != nullptr) {
+        next = next->next;
+    }
+    Node *n = (new Node(value));
+    next->next = n;
+    ++mSize;
 }
