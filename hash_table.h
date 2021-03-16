@@ -33,11 +33,11 @@ V HashTable<K, V>::get(K key) {
 }
 
 template<class K, class V>
-void HashTable<K, V>::add(K key, V valuew) {
+void HashTable<K, V>::add(K key, V value) {
     int hash = std::hash<K>()(key);
     int elementInd = hash % size;
     LinkedList<Pair<K, V>> &list = array[elementInd];
-    Pair<K, V> pairToAdd = Pair<K, V>(key, valuew);
+    Pair<K, V> pairToAdd = Pair<K, V>(key, value);
     list.add(pairToAdd);
 }
 
