@@ -25,6 +25,7 @@ bool Pair<L, R>::operator==(const Pair &anotherPair) const {
     bool rightEqual = this->right == anotherPair.right;
     return leftEqual && rightEqual;
 }
+
 template<class L, class R>
 bool Pair<L, R>::operator!=(const Pair &anotherPair) const {
     return !operator==(anotherPair);
