@@ -6,6 +6,7 @@ template<class V>
 class LinkedList {
 private:
     int mSize = 0;
+    void addLast(V value);
 
     class Node {
     public:
@@ -20,8 +21,18 @@ private:
     };
 
     Node first;
+    Node* last;
 
 public:
+    typedef V* iterator;
+    typedef const V* const_iterator;
+
+   /* iterator begin() { return &(first.value); }
+    const_iterator begin() const { return &(first.value); }
+    iterator end() { return &store[size]; }
+    const_iterator end() const { return &store[size]; }*/
+
+
     int size();
 
     V get(int index);
@@ -66,13 +77,7 @@ V LinkedList<V>::get(V value) {
 
 template<class V>
 void LinkedList<V>::add(V value) {
-    Node *next = &first;
-    while (next->next != nullptr) {
-        next = next->next;
-    }
-    Node *n = (new Node(value));
-    next->next = n;
-    ++mSize;
+    addLast(value);
 }
 
 template<class V>
@@ -87,3 +92,23 @@ void LinkedList<V>::remove(int index) {
     toDelete->next = NULL;
     delete toDelete;
 }
+
+template<class V>
+void LinkedList<V>::addLast(V value) {
+    Node* lastPointer = last;
+    Node* nodeToAdd = new Node(value);
+    cout << "";
+    last = nodeToAdd;
+    // if lastPointer is null, it means the list had no elements before
+    // so we init the first node
+    if (lastPointer == NULL){
+        first = *nodeToAdd;
+        last = &first;
+    }
+    // if lastPointer wasn't null, we should now assign node "last" as next node of lastPointer
+    else {
+        lastPointer->next = last;
+    }
+    ++mSize;
+}
+
