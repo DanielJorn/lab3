@@ -24,9 +24,7 @@ namespace std {
 }
 
 bool MyString::operator==(const MyString &anotherStr) const {
-    int thisHash = hash<MyString>()(*this);
-    int anotherHash = hash<MyString>()(anotherStr);
-    return thisHash == anotherHash;
+    return str == anotherStr.str;
 }
 
 bool MyString::operator!=(const MyString &anotherStr) const {

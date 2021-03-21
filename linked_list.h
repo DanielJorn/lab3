@@ -22,7 +22,7 @@ private:
 
 
     Node first;
-    Node *last;
+    Node *last = nullptr;
 
 public:
     int size();
@@ -93,7 +93,6 @@ template<class V>
 void LinkedList<V>::addLast(V value) {
     Node *lastPointer = last;
     Node *nodeToAdd = new Node(value);
-    cout << "";
     last = nodeToAdd;
     // if lastPointer is null, it means the list had no elements before
     // so we init the first node
