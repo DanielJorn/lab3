@@ -18,7 +18,13 @@ namespace std {
     template<>
     struct hash<MyString> {
         size_t operator()(const MyString &x) const {
-            return x.str.size();
+            const int aConst = 923452125;
+            const int bConst = 942765847;
+            unsigned int long long longHash = 0;
+            for (int i = 0; i < x.str.size(); ++i) {
+                longHash += x.str[i] * aConst;
+            }
+            return longHash % bConst;
         }
     };
 }
