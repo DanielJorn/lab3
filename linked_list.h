@@ -20,24 +20,19 @@ private:
         }
     };
 
+
     Node first;
-    Node* last;
+    Node *last;
 
 public:
-    typedef V* iterator;
-    typedef const V* const_iterator;
-
-   /* iterator begin() { return &(first.value); }
-    const_iterator begin() const { return &(first.value); }
-    iterator end() { return &store[size]; }
-    const_iterator end() const { return &store[size]; }*/
-
-
     int size();
 
     V get(int index);
+
     V get(V value);
+
     void add(V value);
+
     void remove(int index);
 
     LinkedList() = default;
@@ -51,7 +46,7 @@ V LinkedList<V>::get(int index) {
         throw logic_error("index cannot be bigger than size");
     }
 
-    Node* currNode = &first;
+    Node *currNode = &first;
     for (int i = 0; i < index; ++i) {
         currNode = currNode->next;
     }
@@ -85,27 +80,28 @@ void LinkedList<V>::remove(int index) {
     Node *previous = &first;
     Node *toDelete = &first;
     for (int i = 0; i < index; ++i) {
-        toDelete = &toDelete->next;
         previous = toDelete;
+        toDelete = (toDelete->next);
     }
     previous->next = toDelete->next;
     toDelete->next = NULL;
+    --mSize;
     delete toDelete;
 }
 
 template<class V>
 void LinkedList<V>::addLast(V value) {
-    Node* lastPointer = last;
-    Node* nodeToAdd = new Node(value);
+    Node *lastPointer = last;
+    Node *nodeToAdd = new Node(value);
     cout << "";
     last = nodeToAdd;
     // if lastPointer is null, it means the list had no elements before
     // so we init the first node
-    if (lastPointer == NULL){
+    if (lastPointer == NULL) {
         first = *nodeToAdd;
         last = &first;
     }
-    // if lastPointer wasn't null, we should now assign node "last" as next node of lastPointer
+        // if lastPointer wasn't null, we should now assign node "last" as next node of lastPointer
     else {
         lastPointer->next = last;
     }

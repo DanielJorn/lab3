@@ -13,6 +13,7 @@ int main() {
     list.add(str);
     list.add(str2);
     list.add(str3);
+    list.remove(1);
     cout << list.get(1) << endl;
 }
 
