@@ -41,7 +41,13 @@ void HashTable<K, V>::add(K key, V value) {
 template<class K, class V>
 void HashTable<K, V>::remove(K key) {
     LinkedList<Pair<K, V>> &list = getListByKey(key);
-
+    for (int i = 0; i < list.size(); ++i) {
+        Pair<K, V> currPair = list.get(i);
+        if (currPair.left == key){
+            list.remove(i);
+            break;
+        }
+    }
 }
 
 template<class K, class V>
