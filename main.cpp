@@ -10,11 +10,36 @@ int main() {
     table.add(MyString("2"), "val2");
     table.add(MyString("22"), "val22");
     table.add(MyString("33"), "val33");
-    table.add(MyString("44"), "val44");
-    table.add(MyString("3"), "val3");
-    table.remove(MyString("33"));
+    table.add(MyString("33"), "val33");
+    table.add(MyString("33"), "val33");
+    table.add(MyString("32"), "val33");
+    table.add(MyString("32"), "val33");
+    table.add(MyString("322"), "val313");
+    table.add(MyString("32"), "val33");
+    table.add(MyString("32"), "val33");
+    table.add(MyString("43"), "val23");
+    table.add(MyString("43"), "val33");
+    table.add(MyString("43"), "val33");
+    table.add(MyString("43"), "val33");
+    table.add(MyString("33"), "val33");
+    table.add(MyString("33"), "val33");
+    table.add(MyString("33"), "val33");
+    table.add(MyString("31233"), "val33");
+    table.add(MyString("31233"), "val33");
+    table.add(MyString("31233"), "val33");
+    table.add(MyString("31233"), "val33");
+    table.add(MyString("31233"), "val33");
+    table.add(MyString("31233"), "val33");
+    table.add(MyString("33"), "val33");
+    table.add(MyString("33"), "val33");
+    table.add(MyString("33"), "val33");
+    table.add(MyString("331"), "val33as");
+    table.add(MyString("33"), "val33");
+    table.add(MyString("33"), "val33");
+    table.add(MyString("33"), "val33");
 
-    string res = table.get(MyString("2"));
+
+    string res = table.get(MyString("331"));
     cout << res << endl;
 }
 

@@ -43,7 +43,7 @@ template<class V>
 V LinkedList<V>::get(int index) {
     if (index >= this->size()) {
         cout << " ERROR " << endl;
-        throw logic_error("index cannot be bigger than size");
+        throw logic_error("index cannot be bigger than currSize");
     }
 
     Node *currNode = &first;
