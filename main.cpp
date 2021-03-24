@@ -72,5 +72,9 @@ void outputWord(string word, HashTable<MyString, string> table) {
     cout << "=================================" << endl;
     cout << "Definition of word " << word << ": " << endl;
     string res = table.get(MyString(wordUpperCase));
-    cout << res << endl;
+    if (res != "")
+    {
+        cout << res << endl;
+    }
+    else cout << "none" << endl;
 }
