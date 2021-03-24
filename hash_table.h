@@ -43,19 +43,23 @@ V HashTable<K, V>::get(K key) {
 
 template<class K, class V>
 void HashTable<K, V>::add(K key, V value) {
-    //bool list
     LinkedList<Pair<K, V>> &list = getListByKey(key);
     Pair<K, V> pairToAdd = Pair<K, V>(key, value);
     list.add(pairToAdd);
     ++elementsStored;
-    //cout << "ds" <<endl;
-    //resizeArray();
-    //currSize += 1;
-    //cout << currSize << endl;
 
     if (overflowed()){
         resizeArray();
+        cout << "After resize the lists are:\n";
+        for (int i = 0; i < currSize; ++i) {
+            LinkedList<Pair<K, V>> currList = array[i];
+            for (int j = 0; j < currList.size(); ++j) {
+                cout << currList.get(j).right << " ";
+            }
+            cout << endl;
+        }
     }
+
 }
 
 template<class K, class V>
@@ -94,9 +98,16 @@ template<class K, class V>
 void HashTable<K, V>::resizeArray() {
     cout << "resizeArray()" << endl;
     currSize *= 2;
-    auto *doubleArray = new LinkedList<Pair<K, V>>[currSize];
-    for (int i = 0; i < currSize / 2; ++i) {
-        doubleArray[i] = array[i];
+    auto *resizedArray = new LinkedList<Pair<K, V>>[currSize];
+
+    for (int listInd = 0; listInd < currSize / 2; ++listInd) {
+        LinkedList<Pair<K, V>>& currList = array[listInd];
+        for (int pairInd = 0; pairInd < currList.size(); ++pairInd) {
+
+            Pair<K, V> currPair = currList.get(pairInd);
+            int ind = getListIndexByKey(currPair.left);
+            resizedArray[ind].add(currPair);
+        }
     }
-    array = doubleArray;
+    array = resizedArray;
 }
