@@ -1,45 +1,30 @@
 #include <iostream>
+#include <fstream>
+#include <string>
 #include "my_string.h"
 #include "hash_table.h"
 
 using namespace std;
 
 int main() {
-    HashTable<MyString, string> table = HashTable<MyString, string>();
-    table.add(MyString("1"), "val1");
-    table.add(MyString("2"), "val2");
-    table.add(MyString("22"), "val22");
-    table.add(MyString("33"), "val33");
-    table.add(MyString("33"), "val33");
-    table.add(MyString("33"), "val33");
-    table.add(MyString("32"), "val33");
-    table.add(MyString("32"), "val33");
-    table.add(MyString("322"), "val313");
-    table.add(MyString("32"), "val33");
-    table.add(MyString("32"), "val33");
-    table.add(MyString("43"), "val23");
-    table.add(MyString("43"), "val33");
-    table.add(MyString("43"), "val33");
-    table.add(MyString("43"), "val33");
-    table.add(MyString("33"), "val33");
-    table.add(MyString("33"), "val33");
-    table.add(MyString("33"), "val33");
-    table.add(MyString("31233"), "val33");
-    table.add(MyString("31233"), "val33");
-    table.add(MyString("31233"), "val33");
-    table.add(MyString("31233"), "val33");
-    table.add(MyString("31233"), "val33");
-    table.add(MyString("31233"), "val33");
-    table.add(MyString("33"), "val33");
-    table.add(MyString("33"), "val33");
-    table.add(MyString("33"), "val33");
-    table.add(MyString("331"), "val33as");
-    table.add(MyString("33"), "val33");
-    table.add(MyString("33"), "val33");
-    table.add(MyString("33"), "val33");
+    ifstream inFile("dict_processed.txt");
+    if (!inFile)
+        cout << "File cannot be opened." << endl;
+    else
+    {
+        HashTable<MyString, string> table = HashTable<MyString, string>();
+        while (!inFile.eof())
+        {
+            string currentString;
+            getline(inFile, currentString);
+            int wordLength = currentString.find(';');
+            string currentWord = currentString.substr(0, wordLength);
+            table.add(MyString(currentWord), currentString);
+        }
 
 
-    string res = table.get(MyString("331"));
-    cout << res << endl;
+        string res = table.get(MyString("ABALONE"));
+        cout << res << endl;
+    }
+    
 }
-
