@@ -51,14 +51,6 @@ void HashTable<K, V>::add(K key, V value) {
 
     if (overflowed()){
         resizeArray();
-        cout << "After resize the lists are:\n";
-        for (int i = 0; i < currSize; ++i) {
-            LinkedList<Pair<K, V>> currList = array[i];
-            for (int j = 0; j < currList.size(); ++j) {
-                cout << currList.get(j).right << " ";
-            }
-            cout << endl;
-        }
     }
 
 }
@@ -97,7 +89,6 @@ bool HashTable<K, V>::overflowed() {
 
 template<class K, class V>
 void HashTable<K, V>::resizeArray() {
-    cout << "resizeArray()" << endl;
     currSize *= 2;
     auto *resizedArray = new LinkedList<Pair<K, V>>[currSize];
 
